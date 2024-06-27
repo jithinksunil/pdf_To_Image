@@ -2,14 +2,15 @@ import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import * as pdftopic from 'pdftopic';
 import * as cloudinary from 'cloudinary';
+import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class AppService {
-  constructor() {
+  constructor(private config: ConfigService) {
     cloudinary.v2.config({
-      cloud_name: 'df8w69xon',
-      api_key: '818129511951146',
-      api_secret: '_R4yasVlyG3hpD01R8M1Fbz4i6I',
-    });
+      cloud_name: this.config.get('CLOUDINARY_NAME'),
+      api_key: this.config.get('CLOUDINARY_API_KEY'),
+      api_secret: this.config.get('CLOUDINARY_API_SECRET'),
+    })
   }
   async getImagesFromPdf(signedUrl: string) {
     const response = await axios.get(signedUrl, {
