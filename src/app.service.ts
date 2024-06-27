@@ -13,11 +13,15 @@ export class AppService {
     })
   }
   async getImagesFromPdf(signedUrl: string) {
+    console.log(signedUrl);
+    
     const response = await axios.get(signedUrl, {
       responseType: 'arraybuffer',
     });
     const buffer = Buffer.from(response.data, 'binary');
     const imageBuffers = await pdftopic.pdftobuffer(buffer, 'all');
+    console.log(imageBuffers);
+    
     const uploadPromises = imageBuffers.map((buffer) =>
       this.uploadToCloud(buffer),
     );
