@@ -21,8 +21,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "build:docker":"docker build -t my-nestjs-app .",
-    "start:docker":"docker run -p 8000:8000 my-nestjs-app"
+    "docker:build":"docker build -t my-nestjs-app .",
+    "docker:run":"docker run -p 8000:8000 my-nestjs-app",
+    "docker:push":"docker tag my-nest-app:latest jithinksunil/pdf_extractor:latest && docker push jithinksunil/pdf_extractor:latest"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
