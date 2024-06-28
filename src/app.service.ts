@@ -13,7 +13,7 @@ export class AppService {
     })
   }
   async getImagesFromPdf(signedUrl: string) {
-    console.log(signedUrl);
+    console.log('Signed url recieved');
     
     const response = await axios.get(signedUrl, {
       responseType: 'arraybuffer',
